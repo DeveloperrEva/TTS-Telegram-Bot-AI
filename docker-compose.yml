@@ -1,0 +1,23 @@
+version: '2.3'
+services:
+  tts_bot:
+    build: ./
+    container_name: tts_bot
+    restart: always
+    hostname: tts_bot
+
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1024k"
+        max-file: "2"
+
+    volumes:
+      # Mount custom intranet
+      - ./:/usr/src/app:rw
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+    working_dir: /usr/src/app
+
